@@ -73,4 +73,4 @@ ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
 # dconf dump /org/gnome/terminal/legacy/profiles:/ > gnome-terminal-profiles.dconf
 
 echo_action "IMPORT TERMINAL CONF"
-dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
+dconf load /org/gnome/terminal/legacy/profiles:/ < ./dconf/gnome-terminal-profiles.dconf

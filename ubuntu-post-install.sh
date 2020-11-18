@@ -2,6 +2,10 @@
 
 if [ $(id -u) -ne 0 ] ; then echo "Should run as root" ; exit 1 ; fi
 
+######
+# prepare
+######
+
 source ./functions.sh
 
 LOG_FILE="ubuntu-post-install.log"
@@ -12,20 +16,24 @@ if [ -d $TEMP_FOLDER ]; then rm -r $TEMP_FOLDER; fi
 touch $LOG_FILE
 mkdir $TEMP_FOLDER
 
+######
+# functions
+######
+
 function start_install(){
     set +e # Disable exit on non 0
-    echo -e "\n\e[34mℹ EXECUTE SCRIPT ℹ\e[39m $1"
+    echo -e "\n\e[34mℹ EXECUTE SCRIPT ℹ\e[39m $1\n"
 }
 
 function end_install(){
     set -e # Enable exit on non 0
-    local status="\n"
+    local status=""
     if [ $2 -gt 0 ]; then
-        status=$status"\e[31m✖️ INSTALLATION INCOMPLETE ✖️\e[39m $1"
+        status=$status"\n\e[31m✖️ INSTALLATION INCOMPLETE ✖️\e[39m $1\n"
     else
-        status=$status"\e[32m✔️ INSTALLATION COMPLETE ✔️\e[39m $1"
+        status=$status"\n\e[32m✔️ INSTALLATION COMPLETE ✔️\e[39m $1\n"
     fi
-    echo -e $status
+    echo -e $status""
 }
 
 function write_log(){
@@ -41,6 +49,10 @@ function write_log(){
 
     echo "[$current_date] $1 $status" >> $LOG_FILE
 }
+
+######
+# install
+######
 
 apt_update
 apt_upgrade
@@ -59,18 +71,20 @@ do
     fi
 done
 
+######
+# configuration
+######
+
 apt_clean
 
-echo_action "MODIFY .bashrc"
 cat ./terminal/.bashrc >> ~/.bashrc
 
-echo_action "ADD bash_aliases"
 cp  ./terminal/bash_aliases ~/
 
-echo_action "GENERATE SSH KEY"
 ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
 
 # dconf dump /org/gnome/terminal/legacy/profiles:/ > gnome-terminal-profiles.dconf
 
-echo_action "IMPORT TERMINAL CONF"
 dconf load /org/gnome/terminal/legacy/profiles:/ < ./dconf/gnome-terminal-profiles.dconf
+
+echo_message "reboot computer !"

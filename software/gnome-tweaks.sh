@@ -2,4 +2,4 @@
 
 source functions.sh
 
-apt_install "gnome-tweaks"
+apt_install gnome-tweaks

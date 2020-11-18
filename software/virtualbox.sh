@@ -9,5 +9,5 @@ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-
 
 apt_update
 
-apt_install "virtualbox"
+apt_install virtualbox
 

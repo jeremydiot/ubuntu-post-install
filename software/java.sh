@@ -2,4 +2,4 @@
 
 source functions.sh
 
-apt_install "openjdk-11-jdk"
+apt_install openjdk-11-jdk

@@ -2,4 +2,4 @@
 
 source functions.sh
 
-apt_install "gimp"
+apt_install gimp

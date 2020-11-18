@@ -2,4 +2,4 @@
 
 source functions.sh
 
-apt_install "xpad"
+apt_install xpad

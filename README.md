@@ -17,6 +17,7 @@ Ubuntu post-installation shell scripts
 - git-all
 - gnome-tweaks
 - 7zip
+- steam
 
 ## other
 - change PS1

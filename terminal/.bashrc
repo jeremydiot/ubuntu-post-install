@@ -40,13 +40,14 @@ function extract {
 fi
 }
 
+
 # get current branch in git repo
 function parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
 	if [ ! "${BRANCH}" == "" ]
 	then
 		STAT=`parse_git_dirty`
-		echo "(${BRANCH}${STAT})"
+		echo -e "(\e[01;33m${BRANCH}${STAT}\e[39m)"
 	else
 		echo ""
 	fi
@@ -87,4 +88,4 @@ function parse_git_dirty {
 	fi
 }
 
-export PS1="\[\e]0;\u@\h\a\]${debian_chroot:+($debian_chroot)}[\[\033[01;31m\]\u\[\033[00;00m\]@\[\033[01;32m\]\h\[\033[00;00m\]:\[\033[01;34m\]\w\[\033[00;00m\]]\[\033[01;33m\]\`parse_git_branch\`\[\033[00;00m\]\$ "
+export PS1="\[\e]0;\u@\h\a\]${debian_chroot:+($debian_chroot)}[\[\033[01;31m\]\u\[\033[00;00m\]@\[\033[01;32m\]\h\[\033[00;00m\]:\[\033[01;34m\]\w\[\033[00;00m\]]$(parse_git_branch)\[\033[00;00m\]\$ "

@@ -27,3 +27,6 @@ Ubuntu post-installation shell scripts
 
 ## OS version supported
 - Ubuntu 20.04
+
+## use
+./ubuntu-post-install.log

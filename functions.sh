@@ -19,14 +19,14 @@ function apt_clean(){
 }
 
 function apt_install(){
-    sudo apt-get -y install $1
+    sudo apt-get -y install "$1"
 }
 
 function apt_repository(){
-    sudo add-apt-repository -y $1
+    sudo add-apt-repository -y "$1"
 }
 
 function dpkg_install(){
-    sudo apt -y install $1
+    sudo apt -y install "$1"
 }
 

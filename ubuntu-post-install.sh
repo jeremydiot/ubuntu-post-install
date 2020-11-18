@@ -1,7 +1,5 @@
 #!/bin/bash -eu
 
-# if [ $(id -u) -ne 0 ] ; then echo "Should run as root" ; exit 1 ; fi
-sudo test # test sudoer acces
 ######
 # prepare
 ######
@@ -71,7 +69,6 @@ do
     fi
 done
 
-apt_clean
 
 ######
 # configuration
@@ -83,8 +80,10 @@ cp  ./terminal/.bash_aliases ~/
 
 ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
 
+## extract
 # dconf dump /org/gnome/terminal/legacy/profiles:/ > gnome-terminal-profiles.dconf
 
+## import
 dconf load /org/gnome/terminal/legacy/profiles:/ < ./dconf/gnome-terminal-profiles.dconf
 
-echo_message "reboot computer !"
+echo_message "computer must be restarted"

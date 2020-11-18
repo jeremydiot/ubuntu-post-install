@@ -5,28 +5,28 @@ function echo_message(){
 }
 
 function apt_update(){
-    apt-get -y update
+    sudo apt-get -y update
 }
 
 function apt_upgrade(){
-	apt-get -y upgrade
-	apt-get -y dist-upgrade
+	sudo apt-get -y upgrade
+	sudo apt-get -y dist-upgrade
 }
 
 function apt_clean(){
-    apt-get -y autoremove
-	apt-get -y clean
+    sudo apt-get -y autoremove
+	sudo apt-get -y clean
 }
 
 function apt_install(){
-    apt-get -y install $1
+    sudo apt-get -y install $1
 }
 
 function apt_repository(){
-    add-apt-repository -y $1
+    sudo add-apt-repository -y $1
 }
 
 function dpkg_install(){
-    apt -y install $1
+    sudo apt -y install $1
 }
 

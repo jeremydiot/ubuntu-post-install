@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 
-if [ $(id -u) -ne 0 ] ; then echo "Should run as root" ; exit 1 ; fi
-
+# if [ $(id -u) -ne 0 ] ; then echo "Should run as root" ; exit 1 ; fi
+sudo test # test sudoer acces
 ######
 # prepare
 ######
@@ -29,9 +29,9 @@ function end_install(){
     set -e # Enable exit on non 0
     local status=""
     if [ $2 -gt 0 ]; then
-        status=$status"\n\e[31m✖️ INSTALLATION INCOMPLETE ✖️\e[39m $1\n"
+        status=$status"\n\e[31m✖️ INSTALLATION INCOMPLETE ✖️\e[39m $1"
     else
-        status=$status"\n\e[32m✔️ INSTALLATION COMPLETE ✔️\e[39m $1\n"
+        status=$status"\n\e[32m✔️ INSTALLATION COMPLETE ✔️\e[39m $1"
     fi
     echo -e $status""
 }
@@ -71,15 +71,15 @@ do
     fi
 done
 
+apt_clean
+
 ######
 # configuration
 ######
 
-apt_clean
-
 cat ./terminal/.bashrc >> ~/.bashrc
 
-cp  ./terminal/bash_aliases ~/
+cp  ./terminal/.bash_aliases ~/
 
 ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
 

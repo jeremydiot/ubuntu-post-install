@@ -29,4 +29,6 @@ Ubuntu post-installation shell scripts
 - Ubuntu 20.04
 
 ## use
-./ubuntu-post-install.log
+```bash 
+$ ./ubuntu-post-install.sh
+```

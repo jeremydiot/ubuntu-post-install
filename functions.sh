@@ -14,7 +14,7 @@ function apt_upgrade(){
 }
 
 function apt_clean(){
-    sudo apt-get -y autoremove
+    sudo apt-get -y autoremove --purge
 	sudo apt-get -y clean
 }
 

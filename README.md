@@ -32,3 +32,7 @@ Ubuntu post-installation shell scripts
 ```bash 
 $ ./ubuntu-post-install.sh
 ```
+
+## TODO
+- add maven
+- add JAVA_HOME in /etc/environement
